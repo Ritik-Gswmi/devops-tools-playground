@@ -10,7 +10,7 @@ For runnable examples, use the README in the corresponding folder:
 
 - [Docker](docker/README.md)
 - [Redis](redis/README.md)
-- [GitHub Actions](.github/README.md)
+- [GitHub Actions](.github/GITHUB_ACTIONS.md)
 - [Kubernetes](kubernetes/README.md)
 - [Prometheus monitoring](monitoring/README.md)
 
