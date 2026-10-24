@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-playground
+spec:
+  type: ClusterIP
+  selector:
+    app: devops-playground
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000

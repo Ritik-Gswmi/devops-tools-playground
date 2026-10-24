@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: config
+              mountPath: /usr/local/etc/redis
+              readOnly: true
+            - name: data
+              mountPath: /data
+          readinessProbe:
+            exec:
+              command: ["redis-cli", "ping"]
+            periodSeconds: 5
+      volumes:
+        - name: config
+          configMap:
+            name: redis-config
+        - name: data
+          emptyDir: {}

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+data:
+  redis.conf: |
+    bind 0.0.0.0
+    # Development cluster only; keep Redis behind the internal Service.
+    protected-mode no
+    port 6379
+    dir /data
+    appendonly yes
+    appendfsync everysec
+    maxmemory 128mb
+    maxmemory-policy allkeys-lru
